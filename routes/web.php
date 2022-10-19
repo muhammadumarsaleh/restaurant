@@ -1,7 +1,9 @@
 <?php
 
-use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FoodController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +22,10 @@ Route::get('/', function(){
 });
 
 Route::get('/redirects', [HomeController::class, 'redirects']);
+Route::get('/users', [AdminController::class, 'user']);
+Route::get('/users/{user}', [AdminController::class, 'delete'])->name('user.delete');
+
+Route::resource('food', FoodController::class);
 
 Route::middleware([
     'auth:sanctum',
